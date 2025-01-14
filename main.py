@@ -67,18 +67,16 @@ def render_template(template_path, output_path, context):
 
     write_to_file(output_path, content)
 
-
-if __name__ == '__main__':
+def main():
     os.makedirs("fake-people/questionnarie")  
     os.path.join("fake-people/questionnarie")     
     for i in range(10):
         sampled_skills = random.sample(skills, 3)
         runic_skills = []
         for skill in sampled_skills: 
-             for letter in skill:       
-                 skill = skill.replace(letter, letters[letter]) 
-             runic_skills.append(skill)
-             my_text = "context"
+            for letter in skill:       
+                skill = skill.replace(letter, letters[letter]) 
+            runic_skills.append(skill)
         context = {
             "first_name": fake.first_name_male(), 
             "last_name": fake.last_name_male(), 
@@ -94,3 +92,7 @@ if __name__ == '__main__':
             "skill_3": runic_skills[2]          
 }      
         render_template("result.svg", "fake-people/questionnarie/charsheet._{}.svg".format(i), context)
+
+
+if __name__ == '__main__':
+    main()       
