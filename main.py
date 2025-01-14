@@ -1,21 +1,25 @@
 from faker import Faker
 
+
 import random
 
-from random import choice
+
+import os
 
 
 fake = Faker("ru_RU")
 
 
-skills = ["Стремительный прыжок",   
-         "Электрический выстрел",
-         "Ледяной удар",
-         "Стремительный удар",
-         "Кислотный взгляд",
-         "Тайный побег",
-         "Ледяной выстрел",
-         "Огненный заряд"]
+skills = [
+    "Стремительный прыжок",   
+    "Электрический выстрел",
+    "Ледяной удар",
+    "Стремительный удар",
+    "Кислотный взгляд",
+    "Тайный побег",
+    "Ледяной выстрел",
+    "Огненный заряд"
+]
 
 
 letters = {                              
@@ -45,11 +49,10 @@ letters = {
 }
 
 
-VERSION = "1.0"
-
 def read_file(filename):
     with open(filename, encoding='utf8') as file_:
         return file_.read()
+        
 
 def write_to_file(filename, content):
     with open(filename, 'w', encoding='utf8') as file_:
@@ -66,8 +69,10 @@ def render_template(template_path, output_path, context):
 
 
 if __name__ == '__main__':
+    os.makedirs("fake-people/questionnarie")  
+    os.path.join("fake-people/questionnarie")     
     for i in range(10):
-        sampled_skills = random.sample(skills,3)
+        sampled_skills = random.sample(skills, 3)
         runic_skills = []
         for skill in sampled_skills: 
              for letter in skill:       
@@ -75,17 +80,17 @@ if __name__ == '__main__':
              runic_skills.append(skill)
              my_text = "context"
         context = {
-                "first_name": fake.first_name_male(), 
-                "last_name": fake.last_name_male() , 
-                "job": fake.job() ,                        
-                "town": fake.city(),                        
-                "strength":      random.randint(3, 18),     
-                "agility":       random.randint(3, 18),    
-                "endurance":     random.randint(3,18),      
-                "intelligence":  random.randint(3, 18),      
-                "luck":          random.randint(3, 18),     
-                "skill_1":       runic_skills[0],                  
-                "skill_2":       runic_skills[1],          
-                "skill_3":       runic_skills[2]          
-                }   
-        render_template("result.svg", "output/svg/charsheet._{}.svg".format(i), context)
+            "first_name": fake.first_name_male(), 
+            "last_name": fake.last_name_male(), 
+            "job": fake.job(),                        
+            "town": fake.city(),                        
+            "strength": random.randint(3, 18),     
+            "agility": random.randint(3, 18),    
+            "endurance": random.randint(3,18),      
+            "intelligence": random.randint(3, 18),      
+            "luck": random.randint(3, 18),     
+            "skill_1": runic_skills[0],                  
+            "skill_2": runic_skills[1],          
+            "skill_3": runic_skills[2]          
+}      
+        render_template("result.svg", "fake-people/questionnarie/charsheet._{}.svg".format(i), context)
