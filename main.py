@@ -1,14 +1,9 @@
 from faker import Faker
-
-
 import random
-
-
 import os
 
 
 FAKE = Faker("ru_RU")
-
 
 SKILLS = [
     "Стремительный прыжок",
@@ -20,7 +15,6 @@ SKILLS = [
     "Ледяной выстрел",
     "Огненный заряд",
 ]
-
 
 LETTERS = {
     "а": "а͠",
